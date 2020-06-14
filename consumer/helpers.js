@@ -1,4 +1,6 @@
-const successResponse = (res, message, data) => {
+const successResponse = (res, message, data, status) => {
+
+  status = status || 'success'
 
   res.status(200)
   return res.send({
@@ -12,8 +14,8 @@ const successResponse = (res, message, data) => {
 
 const errorResponse = (res, e, {message, status_code}) => {
 
-  let status_code = status_code || 500;
-  let message = message || 'error';
+  status_code = status_code || 500;
+  message = message || 'error';
 
   res.status(status_code)
   return res.send({

@@ -1,4 +1,6 @@
 import os
+import requests
+import logging
 
 def store_metrics(metrics, timestamp, method, simulation_id):
     if method == 'disk':
@@ -12,3 +14,19 @@ def store_metrics(metrics, timestamp, method, simulation_id):
 
         with open(f'data/{simulation_id}', 'a') as f:
             f.write(f'{timestamp}, {metrics["height"]}, {metrics["speed"]}\n')
+
+    if method == 'http':
+
+        url = os.getenv('METRICS_URL', 'http://localhost:3000')
+
+        res = requests.post(
+            f'{url}/api/v1/metrics', 
+            json={
+                'height': metrics['height'],
+                'speed': metrics['speed'],
+                'timestamp': str(timestamp),
+                'simulation_id': str(simulation_id)
+            }
+        )
+
+        logging.info(f'posted to metrics :: {res}')

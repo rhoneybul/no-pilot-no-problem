@@ -6,6 +6,9 @@ const {
   successResponse
 } = require('./helpers');
 const logger = require('./logger')
+const {
+  createMetric 
+} = require('./controllers')
 
 const app = express();
 
@@ -13,11 +16,15 @@ app.use(bodyParser.json());
 
 const router = express.Router()
 
-router.use('/', (_, res) => {
+router.get('/', (_, res) => {
   return successResponse(res, 'noPilot noProblem API >>');
 })
 
+router.post('/metrics', createMetric);
+
 app.use(morgan('combined'));
+
+app.use('/api/v1', router);
 
 const port = process.env.PORT || 3000;
 

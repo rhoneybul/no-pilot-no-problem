@@ -1,4 +1,8 @@
 const {
+  Metric
+} = require('../models/index')
+
+const {
   successResponse,
   errorResponse
 } = require('../helpers')

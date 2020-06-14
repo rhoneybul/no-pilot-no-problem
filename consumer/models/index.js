@@ -1,4 +1,4 @@
-import logger from '../logger';
+const logger = require('../logger');
 
 class Metric {
 
@@ -25,3 +25,5 @@ class Metric {
   }
 
 }
+
+module.exports = { Metric, }
