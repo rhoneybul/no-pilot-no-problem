@@ -24,7 +24,7 @@ def store_metrics(metrics, timestamp, method, simulation_id):
             json={
                 'height': metrics['height'],
                 'speed': metrics['speed'],
-                'timestamp': str(timestamp),
+                'time': str(timestamp),
                 'simulation_id': str(simulation_id)
             }
         )
