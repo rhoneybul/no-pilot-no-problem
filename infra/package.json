@@ -1,0 +1,10 @@
+{
+  "name": "infra",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start-timescale": "docker run -d --name timescaledb -p 5432:5432 --env-file dev.env timescale/timescaledb:latest-pg12",
+    "db-init": "psql -h localhost -U user -d np -f db_init.sql"
+  }
+}
